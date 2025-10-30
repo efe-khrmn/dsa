@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Queue {
+public class QueueNode {
 
     public static void main(String[] args) {
 
@@ -23,7 +23,7 @@ public class Queue {
         queueList.printQueue();
     }
 }
-class QueueWithCircularArray<T> extends Queue{
+class QueueWithCircularArray<T> extends QueueNode{
     private ArrayList<T> data;
     private int front, rear, capacity;
 
@@ -65,7 +65,7 @@ class QueueWithCircularArray<T> extends Queue{
     }
 
 }
-class QueueWithSinglyLinkedList<T> extends Queue {
+class QueueWithSinglyLinkedList<T> extends QueueNode {
     //this is O(n) implementation of enqueue using singly linked list with respect to given task requirements
     //it can be optimized to O(1) by maintaining a rear pointer
     private Node front;

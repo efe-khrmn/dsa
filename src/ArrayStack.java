@@ -147,3 +147,57 @@ class Postfix{
     }
 }
 //TODO: postfix to infix
+
+//TODO: LinkedListStack implementation
+class StackLinkedList<T>{
+    private Node<T> top;
+    private int height;
+    class Node<T>{
+        T value;
+        Node<T> next;
+        Node(T value){
+            this.value = value;
+        }
+    }
+    public StackLinkedList(T value){
+        Node<T> newNode = new Node<>(value);
+        top = newNode;
+        height = 1;
+    }
+    public boolean isEmpty(){
+        return height == 0;
+    }
+    public void push(T value){
+        Node<T> newNode = new Node<>(value);
+        if(isEmpty()){
+            top = newNode;
+        } else {
+            newNode.next = top;
+            top = newNode;
+        }
+        height++;
+    }
+    public T pop(){
+        if(isEmpty()) throw new StackException("Stack is empty");
+        else if(height == 1){
+            T poppedValue = top.value;
+            top = null;
+            height--;
+            return poppedValue;
+        } else{
+            Node<T> temp = top;
+            top = top.next;
+            temp.next = null;
+            return temp.value;
+        }
+    }
+    public T peek() {
+        if (isEmpty()) throw new StackException("Stack is empty");
+        return top.value;
+    }
+
+    public int size() {
+        return height;
+    }
+
+}

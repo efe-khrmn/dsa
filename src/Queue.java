@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Queue {
+
     public static void main(String[] args) {
 
         QueueWithCircularArray<Integer> queueArray = new QueueWithCircularArray<>(5);
@@ -22,7 +23,7 @@ public class Queue {
         queueList.printQueue();
     }
 }
-class QueueWithCircularArray<T>{
+class QueueWithCircularArray<T> extends Queue{
     private ArrayList<T> data;
     private int front, rear, capacity;
 
@@ -64,12 +65,14 @@ class QueueWithCircularArray<T>{
     }
 
 }
-class QueueWithSinglyLinkedList<T> {
-    private Node<T> front;
+class QueueWithSinglyLinkedList<T> extends Queue {
+    //this is O(n) implementation of enqueue using singly linked list with respect to given task requirements
+    //it can be optimized to O(1) by maintaining a rear pointer
+    private Node front;
     private int size;
-    class Node<T> {
+    class Node {
         T data;
-        Node<T> next;
+        Node next;
         Node(T data) {
             this.data = data;
         }
@@ -82,11 +85,11 @@ class QueueWithSinglyLinkedList<T> {
         return size == 0;
     }
     public void enqueue(T data){
-        Node<T> newNode = new Node<>(data);
+        Node newNode = new Node(data);
         if(isEmpty()){
             front = newNode;
         } else{
-            Node<T> cursor = front;
+            Node cursor = front;
             while(cursor.next != null){
                 cursor = cursor.next;
             }
@@ -105,7 +108,7 @@ class QueueWithSinglyLinkedList<T> {
         return null;
     }
     public void printQueue(){
-        Node<T> cursor = front;
+        Node cursor = front;
         while(cursor != null){
             System.out.print(cursor.data + " ");
             cursor = cursor.next;

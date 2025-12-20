@@ -141,4 +141,23 @@ public class BST
             return temp.getValue();
         }
         return -1;
-    }}
+    }
+    public BinaryNode contains(BinaryNode root, Integer x){
+        if(root==null) return null;
+        if(root.value.equals(x)) return root;
+        if(x<root.value)return contains(root.leftNode,x);
+        else return contains(root.rightNode,x);
+    }
+    public int sumOfLeafNodes(BinaryNode x) {
+        if (x == null) {
+            return 0;
+        }
+        if (x.leftNode == null && x.rightNode == null) {
+            return x.value;
+        }
+        int leftSum = sumOfLeafNodes(x.leftNode);
+        int rightSum = sumOfLeafNodes(x.rightNode);
+
+        return leftSum + rightSum;
+    }
+}
